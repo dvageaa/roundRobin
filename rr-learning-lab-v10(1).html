@@ -1,0 +1,328 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>RR Learning Lab</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050505;--card:rgba(22,22,24,.66);--tx:#f6f6f6;--mut:#b9b9c0;--pri:#e11d2e;--pri2:#ff4d4d;--acc:#ff3b3b;--bd:rgba(255,255,255,.14);--soft:rgba(255,255,255,.07);--sh:0 12px 34px rgba(0,0,0,.6);color-scheme:dark;box-sizing:border-box}
+*{box-sizing:border-box}html{scroll-padding-top:90px}
+body{margin:0;min-height:100vh;background:radial-gradient(800px 500px at 0 0,#3d060b,transparent),radial-gradient(700px 500px at 100% 100%,#26050a,transparent),linear-gradient(160deg,#0c0c0d,#030303);background-attachment:fixed;color:var(--tx);font:15px/1.6 'Plus Jakarta Sans',system-ui,sans-serif;padding:max(14px,env(safe-area-inset-top)) 14px max(14px,env(safe-area-inset-bottom))}
+.shell{max-width:1240px;margin:0 auto;background:rgba(10,10,11,.72);backdrop-filter:blur(10px);border:1px solid var(--bd);border-radius:32px;padding:14px;display:grid;grid-template-columns:230px 1fr;gap:16px;box-shadow:var(--sh)}
+aside{background:var(--card);border-radius:24px;padding:20px 14px;display:flex;flex-direction:column;gap:6px;position:sticky;top:14px;height:calc(100vh - 56px);min-height:520px;box-shadow:var(--sh)}
+.lg{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;padding:0 8px 18px}.lg u{text-decoration:none;display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff;font-size:14px}
+nav{display:flex;flex-direction:column;gap:4px}nav a{position:relative;display:flex;align-items:center;gap:12px;color:var(--mut);text-decoration:none;font-weight:600;padding:11px 12px;border-radius:14px}
+nav a svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+nav a.on{color:var(--pri);background:var(--soft)}nav a.on::before{content:"";position:absolute;left:-14px;top:10px;bottom:10px;width:4px;border-radius:4px;background:var(--pri)}
+.up{margin-top:auto;text-align:center;border-radius:18px;padding:16px 12px;background:var(--soft);font-weight:600}.up .btn{width:100%;margin-top:10px}
+.wrap{min-width:0;padding:4px 6px 10px}
+.top{display:flex;align-items:center;gap:12px;margin:2px 0 16px}.top h2{margin:0 auto 0 4px;font-size:20px}
+.ib{border:0;background:var(--card);width:42px;height:42px;border-radius:50%;cursor:pointer;font-size:18px;box-shadow:var(--sh);color:var(--tx)}.av{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#ff6b6b,#e11d2e);color:#fff;font-weight:800}
+main{padding:0 0 20px}.pg{display:none}.pg.on{display:block}
+h1{font-size:clamp(26px,4vw,38px);line-height:1.15;letter-spacing:-.02em;margin:0 0 8px;font-weight:800}h2{font-size:clamp(22px,3vw,28px);letter-spacing:-.02em;margin:.2em 0 .3em;font-weight:800}h3{margin:.2em 0 .5em;font-size:17px}
+.mut{color:var(--mut)}.card{background:var(--card);border-radius:22px;padding:22px;margin-bottom:16px;box-shadow:var(--sh)}
+.btn{border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:10px 18px;border-radius:12px;font:700 14px inherit;cursor:pointer;text-decoration:none;display:inline-block;transition:.15s}.btn:hover:not(:disabled){box-shadow:0 6px 16px rgba(225,29,46,.18)}
+.btn.p{background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff;border:0;box-shadow:0 8px 18px rgba(225,29,46,.32)}.btn:disabled{opacity:.35;cursor:default}
+.ban{position:relative;overflow:hidden;border-radius:24px;padding:34px 20px;text-align:center;color:#fff;background:linear-gradient(120deg,#e11d2e,#8b0f1c 60%,#e11d2e);display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px}
+.ban div{max-width:440px;margin:0 auto;z-index:1}.ban p{margin:0 0 16px;opacity:.88}.ban h1{color:#fff}.ban svg{width:150px;flex:none}.ban .btn{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7)}
+.hm{display:grid;grid-template-columns:1fr 280px;gap:16px;align-items:start}
+.tiles{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-top:10px}
+.tl{display:block;color:#fff;text-decoration:none;border-radius:20px;padding:16px;min-height:170px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;transition:.2s}.tl:hover{transform:translateY(-3px)}
+.tl i{font-style:normal;font-size:44px;position:absolute;top:14px;left:16px}.tl b{font-size:16px}.tl span{font-size:12.5px;opacity:.9}
+.t1{background:linear-gradient(160deg,#ff6b6b,#e11d2e)}.t2{background:linear-gradient(160deg,#ff6b6b,#ff4d4d)}.t3{background:linear-gradient(160deg,#52525b,#8b0f1c)}
+.rl{display:flex;align-items:center;gap:12px;padding:10px;border-radius:14px;background:var(--soft);margin-bottom:10px;text-decoration:none;color:inherit}.rl i{font-style:normal;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--card);font-size:20px}.rl div{flex:1;font-weight:700;line-height:1.3}.rl small{display:block;color:var(--mut);font-weight:500}.rl .btn{padding:6px 12px;font-size:13px;background:var(--pri);color:#fff;border:0}
+.demo{background:var(--soft);border-radius:18px;padding:16px;margin-top:8px}
+.dr{display:flex;gap:4px}.dr b{color:#fff;padding:14px 0;border-radius:10px;text-align:center;transform-origin:left;animation:pop 3.6s infinite both}
+.dr b:nth-child(2){animation-delay:.3s}.dr b:nth-child(3){animation-delay:.6s}.dr b:nth-child(4){animation-delay:.9s}.dr b:nth-child(5){animation-delay:1.2s}
+@keyframes pop{0%{transform:scaleX(0);opacity:0}12%,85%{transform:scaleX(1);opacity:1}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.dr b{animation:none}}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.lm{display:grid;grid-template-columns:230px 1fr;gap:16px;align-items:start}.ll{position:sticky;top:14px;display:flex;flex-direction:column;gap:4px;background:var(--card);border-radius:22px;padding:12px;box-shadow:var(--sh)}
+.li{display:flex;gap:10px;align-items:center;text-align:left;border:0;background:transparent;padding:9px 10px;border-radius:14px;font:600 14px inherit;color:var(--mut);cursor:pointer}.li b{display:grid;place-items:center;min-width:28px;height:28px;border-radius:9px;background:var(--soft);color:var(--pri);font-size:13px}
+.li.on{background:var(--soft);color:var(--tx)}.li.on b{background:var(--pri);color:#fff}.li.ok b{background:rgba(52,211,153,.2);color:#34d399}
+.fm{background:#141416;color:#f1f1f1;border-radius:16px;padding:12px 16px;font-family:ui-monospace,monospace;font-size:15px;margin:10px 0}.ex{background:var(--soft);border-radius:16px;padding:12px 16px}
+.lab{background:var(--soft);border-radius:20px;padding:16px;margin-top:16px}.lab h4{margin:0 0 10px;color:var(--pri)}
+.mctl{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}.mctl input[type=range]{flex:1;min-width:140px;accent-color:#e11d2e}
+.pill{border:0;color:#fff;background:var(--c);font:700 14px inherit;padding:6px 16px;border-radius:99px;cursor:pointer;opacity:.45}.pill.on{opacity:1;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.mnote{margin-top:10px;background:var(--card);border-left:5px solid var(--pri);border-radius:14px;padding:10px 14px}
+.nv{display:flex;justify-content:space-between;margin-top:16px;gap:8px}
+.gw{overflow-x:auto;padding-bottom:4px}.gi{position:relative;height:54px;border-radius:12px;margin:0 12px;background:repeating-linear-gradient(90deg,var(--soft) 0 37px,var(--bd) 37px 38px)}
+.blk{position:absolute;top:0;height:54px;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;border-radius:10px;border:2px solid var(--card);box-shadow:inset 0 -4px 0 rgba(0,0,0,.14);overflow:hidden;transition:opacity .2s}
+.blk.idle{background:repeating-linear-gradient(45deg,#94a3b8,#94a3b8 6px,#b8c1d0 6px,#b8c1d0 12px)}.blk.new{animation:gp .45s ease-out;transform-origin:left}@keyframes gp{from{transform:scaleX(0)}}
+.tk{position:relative;height:22px;margin:3px 12px}.tk span{position:absolute;transform:translateX(-50%);font-size:12px;color:var(--mut);font-weight:600}
+.chip{display:inline-block;color:#fff;font-weight:700;padding:3px 13px;border-radius:99px;margin:3px;animation:gp .35s}.q{display:flex;align-items:center;flex-wrap:wrap;margin-top:8px}.q i{font-style:normal;color:var(--mut)}
+table{border-collapse:collapse;width:100%}th,td{padding:8px;border-bottom:1px solid var(--bd);text-align:right}th:first-child,td:first-child{text-align:left}th{color:var(--mut);font-size:13px}.sc{overflow-x:auto}
+input[type=number],input.id{font:inherit;padding:7px 10px;border:1px solid var(--bd);border-radius:10px;width:90px;background:var(--card);color:var(--tx)}input.id{width:76px}.dot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:8px}
+.err{color:#ff6b6b;font-weight:700;margin:8px 0}.ctl{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.exl{max-height:300px;overflow:auto}.exl .s{padding:10px 14px;border-left:4px solid var(--bd);margin-bottom:8px;border-radius:0 12px 12px 0}.exl .s.cur{border-color:var(--pri);background:var(--soft)}.exl p{margin:2px 0}
+.opt{display:block;width:100%;text-align:left;margin:8px 0}.opt:hover:not(:disabled){border-color:var(--pri);background:var(--soft)}.ok{color:#34d399;font-weight:800}.bad{color:#ff6b6b;font-weight:800}
+.sb{display:inline-block;background:var(--soft);color:var(--pri);font-weight:800;border-radius:99px;padding:3px 14px;font-size:14px}
+footer{text-align:center;color:var(--mut);padding:10px 10px 4px;font-size:13px}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--pri);outline-offset:2px}
+@media(max-width:1020px){.hm{grid-template-columns:1fr}}
+@media(max-width:820px){.shell{grid-template-columns:1fr;padding:10px;border-radius:24px;padding-bottom:84px}
+aside{position:fixed;left:12px;right:12px;bottom:max(10px,env(safe-area-inset-bottom));top:auto;height:auto;min-height:0;flex-direction:row;padding:6px;z-index:20;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.lg,.up{display:none}nav{flex-direction:row;width:100%;justify-content:space-around}nav a{flex-direction:column;gap:2px;font-size:11.5px;padding:7px 10px}nav a.on::before{display:none}
+.ban svg{display:none}.lm{grid-template-columns:1fr}.ll{position:static;flex-direction:row;overflow-x:auto}.li span{display:none}}
+
+.hero2{position:relative;overflow:hidden;border-radius:28px;padding:44px 36px;min-height:330px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:10px;margin-bottom:18px;background:radial-gradient(420px 280px at 82% 28%,rgba(225,29,46,.5),transparent),radial-gradient(420px 300px at 95% 90%,rgba(255,255,255,.1),transparent),linear-gradient(160deg,#1c0508,#070707);border:1px solid var(--bd)}
+.hero2::before{content:"";position:absolute;inset:0;background:radial-gradient(rgba(255,255,255,.7) 1px,transparent 1.5px) 0 0/110px 110px,radial-gradient(rgba(255,120,120,.8) 1px,transparent 1.5px) 40px 55px/150px 150px;opacity:.35}
+.hero2>*{position:relative}.hero2 p{color:var(--mut);max-width:420px;margin:0 0 20px}.hero2 svg{width:100%;max-width:380px;justify-self:end}
+.btn.pk{background:#f6f6f6;color:#111;border:0;box-shadow:0 8px 22px rgba(255,255,255,.18)}
+.pl{padding:7px 18px;border-radius:99px;font-size:13px;background:linear-gradient(135deg,#e11d2e,#ff4d4d);color:#fff;border:0}
+.tri{display:grid;grid-template-columns:repeat(3,1fr)}.tri>div{padding:4px 20px}.tri>div+div{border-left:1px solid var(--bd)}.tri>div:first-child{padding-left:0}.tri p{color:var(--mut);margin:4px 0 14px;font-size:14px}
+.arts{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}.art{display:block;color:inherit;text-decoration:none}
+.art i{font-style:normal;display:grid;place-items:center;height:120px;border-radius:20px;font-size:46px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),var(--sh);transition:.2s}.art:hover i{transform:translateY(-3px)}
+.art b{display:block;margin-top:10px}.art small{color:var(--mut)}
+.g1{background:radial-gradient(circle at 30% 20%,#ff4d4d,#2a0508 72%)}.g2{background:radial-gradient(circle at 70% 20%,#e4e4e7,#3b3b40 80%)}.g3{background:radial-gradient(circle at 30% 80%,#e11d2e,#150305 78%)}.g4{background:radial-gradient(circle at 70% 80%,#71717a,#0f0f10 78%)}
+.cont{display:flex;align-items:center;gap:16px;flex-wrap:wrap}.cont i{font-style:normal;font-size:38px;display:grid;place-items:center;width:84px;height:84px;border-radius:20px;background:radial-gradient(circle at 30% 20%,#ff4d4d,#5a0a12)}
+.cont div{flex:1;min-width:180px}.cont b{font-size:17px}.pb{height:9px;border-radius:9px;background:var(--soft);margin:10px 0 4px;overflow:hidden}.pb u{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,#e11d2e,#ffffff);transition:width .4s}
+.ring{--p:0;width:130px;height:130px;border-radius:50%;margin:6px auto 12px;display:grid;place-items:center;background:conic-gradient(var(--acc) calc(var(--p)*1%),var(--soft) 0)}.ring div{width:100px;height:100px;border-radius:50%;background:var(--card);display:grid;place-items:center;text-align:center;line-height:1.2;font-weight:800;font-size:22px}.ring small{display:block;font-size:11px;color:var(--mut);font-weight:600}
+.big{font-size:34px;font-weight:800;margin:0}
+@media(max-width:820px){.hero2{grid-template-columns:1fr;padding:28px 20px}.hero2 svg{display:none}.tri{grid-template-columns:1fr}.tri>div,.tri>div:first-child{padding:12px 0}.tri>div+div{border-left:0;border-top:1px solid var(--bd)}}
+
+/* GLASS */
+body::before,body::after{content:"";position:fixed;z-index:-1;border-radius:50%;filter:blur(90px);pointer-events:none}
+body::before{width:520px;height:520px;left:-120px;top:8%;background:#e11d2e;opacity:.3;animation:dr 22s ease-in-out infinite alternate}
+body::after{width:480px;height:480px;right:-100px;bottom:5%;background:#7f1d1d;opacity:.4;animation:dr 26s ease-in-out infinite alternate-reverse}
+.shell{background:rgba(8,8,9,.6);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(26px) saturate(150%);-webkit-backdrop-filter:blur(26px) saturate(150%);box-shadow:0 30px 80px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.2)}
+.card,aside,.ll,.up,.rl,.lab,.demo,.ex,.mnote,.btn:not(.p):not(.pk):not(.pl),input[type=number],input.id{backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%)}
+.card,aside,.ll{border:1px solid rgba(255,255,255,.16);box-shadow:0 14px 40px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.22),inset 0 -1px 0 rgba(255,255,255,.04);background-image:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,0) 45%)}
+.hero2{box-shadow:0 20px 50px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.25)}
+.btn:not(.p):not(.pk):not(.pl){background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
+.btn.p,.btn.pk,.btn.pl{box-shadow:0 8px 22px rgba(225,29,46,.4),inset 0 1px 0 rgba(255,255,255,.35)}
+.rl .btn,.up .btn{background-clip:padding-box}
+nav a.on{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
+.lab,.demo,.ex,.mnote,.rl,.up{border:1px solid rgba(255,255,255,.12)}
+input[type=number],input.id{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2)}
+.ring div{background:#111112;box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
+.blk{border-color:rgba(255,255,255,.35)}
+.art i{border:1px solid rgba(255,255,255,.2)}
+@media(max-width:820px){aside{background:rgba(12,12,13,.85)}}
+@supports not (backdrop-filter:blur(1px)){.card,aside,.ll{background-color:rgba(24,24,26,.95)}.shell{background:rgba(10,10,11,.95)}}
+@media(prefers-reduced-transparency:reduce){.card,aside,.ll{background-color:#1a1a1c;backdrop-filter:none}}
+
+nav a{color:#d4d4d8}nav a.on{color:#111;background:#f6f6f6;border-color:#fff}
+aside{background-color:rgba(10,10,11,.78)}.card,.ll{background-color:rgba(14,14,15,.55)}
+.orbw{position:relative;height:300px;display:grid;place-items:center}
+.orb{position:relative;width:250px;height:250px;border-radius:50%;border:2px dashed rgba(255,255,255,.5);box-shadow:0 0 60px rgba(225,29,46,.35),inset 0 0 40px rgba(225,29,46,.2)}
+.cpu{position:absolute;inset:78px;border-radius:24px;display:grid;place-items:center;font-size:44px;background:linear-gradient(135deg,#e11d2e,#ff4d4d);box-shadow:0 0 40px rgba(225,29,46,.7);animation:pulse 2.4s ease-in-out infinite}
+.rg{position:absolute;inset:0;animation:spin 16s linear infinite}
+.rg b{position:absolute;left:50%;top:50%;width:40px;height:40px;margin:-20px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:13px;box-shadow:0 0 18px rgba(0,0,0,.5);transform:rotate(var(--a)) translateY(-125px) rotate(calc(var(--a)*-1))}
+.rg b span{display:block;animation:spin 16s linear infinite reverse}
+.fl{position:absolute;font-style:normal;font-size:30px;animation:fl 4s ease-in-out infinite;animation-delay:var(--d);filter:drop-shadow(0 6px 10px rgba(0,0,0,.45))}
+.cont i{animation:fl 3.5s ease-in-out infinite}.art i{animation:fl 4.5s ease-in-out infinite}.art:nth-child(2) i{animation-delay:.6s}.art:nth-child(3) i{animation-delay:1.2s}.art:nth-child(4) i{animation-delay:1.8s}.art:hover i{filter:brightness(1.25);transform:none}
+.ring{animation:glow 3s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes pulse{50%{transform:scale(1.08)}}@keyframes fl{50%{transform:translateY(-10px) rotate(6deg)}}
+@keyframes dr{to{transform:translate(80px,-60px) scale(1.15)}}@keyframes glow{50%{box-shadow:0 0 28px rgba(225,29,46,.5)}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important}}
+.clk{margin:4px 0 8px;font-weight:700}.mnote ol{margin:6px 0 0}.card ol{padding-left:22px}[style*="#e4e4e7"],[style*="#a1a1aa"],[style*="#fda4a4"],[style*="#ff6b6b"]{color:#111!important}
+/* MODE PAGI */
+.tg{width:auto!important;padding:0 18px;border-radius:99px!important;font:700 14px inherit;display:flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,.18)!important;backdrop-filter:blur(14px)}
+:root[data-theme=light]{--bg:#fff6f6;--card:rgba(255,255,255,.72);--tx:#1c1112;--mut:#6d5e60;--bd:rgba(40,10,15,.12);--soft:rgba(225,29,46,.06);--sh:0 12px 30px rgba(120,20,30,.12);color-scheme:light}
+:root[data-theme=light] body{background:radial-gradient(800px 500px at 0 0,#ffdfe2,transparent),radial-gradient(700px 500px at 100% 100%,#ffd3d7,transparent),linear-gradient(160deg,#fffafa,#f4eeee);background-attachment:fixed}
+:root[data-theme=light] body::before{background:#e11d2e;opacity:.16}:root[data-theme=light] body::after{background:#ff9aa2;opacity:.3}
+:root[data-theme=light] .shell{background:rgba(255,255,255,.5);border-color:rgba(40,10,15,.1);box-shadow:0 30px 80px rgba(120,20,30,.16),inset 0 1px 0 #fff}
+:root[data-theme=light] aside{background-color:rgba(255,255,255,.82)}
+:root[data-theme=light] .card,:root[data-theme=light] .ll{background-color:rgba(255,255,255,.72)}
+:root[data-theme=light] .card,:root[data-theme=light] aside,:root[data-theme=light] .ll{border-color:rgba(40,10,15,.09);box-shadow:0 14px 36px rgba(120,20,30,.1),inset 0 1px 0 #fff;background-image:linear-gradient(135deg,rgba(255,255,255,.8),rgba(255,255,255,0) 45%)}
+:root[data-theme=light] nav a{color:#6d5e60}
+:root[data-theme=light] nav a.on{color:#fff;background:linear-gradient(135deg,#e11d2e,#ff4d4d);border-color:transparent;box-shadow:0 8px 18px rgba(225,29,46,.3)}
+:root[data-theme=light] .btn:not(.p):not(.pk):not(.pl){background:rgba(255,255,255,.7);border-color:rgba(40,10,15,.14);box-shadow:inset 0 1px 0 #fff}
+:root[data-theme=light] .tg{border-color:rgba(40,10,15,.14)!important}
+:root[data-theme=light] .btn.pk{background:linear-gradient(135deg,#e11d2e,#ff4d4d);color:#fff;box-shadow:0 8px 22px rgba(225,29,46,.35)}
+:root[data-theme=light] .hero2{background:radial-gradient(420px 280px at 82% 28%,rgba(225,29,46,.2),transparent),radial-gradient(420px 300px at 95% 90%,rgba(255,150,160,.4),transparent),linear-gradient(160deg,#fff1f2,#ffdfe2);border-color:rgba(225,29,46,.18);box-shadow:0 20px 50px rgba(120,20,30,.14),inset 0 1px 0 #fff}
+:root[data-theme=light] .hero2::before{opacity:0}
+:root[data-theme=light] .ring div{background:#fff;color:var(--tx)}
+:root[data-theme=light] .orb{border-color:rgba(40,10,15,.25)}
+:root[data-theme=light] input[type=number],:root[data-theme=light] input.id{background:#fff;border-color:rgba(40,10,15,.18)}
+:root[data-theme=light] .rl,:root[data-theme=light] .lab,:root[data-theme=light] .demo,:root[data-theme=light] .ex,:root[data-theme=light] .mnote,:root[data-theme=light] .up{border-color:rgba(40,10,15,.1)}
+:root[data-theme=light] .ok,:root[data-theme=light] .li.ok b{color:#16a34a}:root[data-theme=light] .bad,:root[data-theme=light] .err{color:#dc2626}
+:root[data-theme=light] .li.ok b{background:rgba(22,163,74,.15)}
+:root[data-theme=light] .av{color:#fff}
+:root[data-theme=light] .fl{filter:drop-shadow(0 6px 10px rgba(120,20,30,.25))}
+</style></head><body>
+<div class="shell"><aside><div class="lg"><u>RR</u><span>Learning Lab</span></div><nav><a href="#beranda"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9H4z"/></svg>Beranda</a><a href="#materi"><svg viewBox="0 0 24 24"><path d="M4 5h6a2 2 0 0 1 2 2v12a2 2 0 0 0-2-2H4zM20 5h-6a2 2 0 0 0-2 2v12a2 2 0 0 1 2-2h6z"/></svg>Materi</a><a href="#simulasi"><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/></svg>Simulasi</a><a href="#latihan"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12l3 3 5-6"/></svg>Latihan</a></nav><div class="up">Coba simulator Round Robin sendiri<a class="btn p" href="#simulasi">Mulai simulasi</a></div></aside><div class="wrap"><div class="top"><h2 id="pt">Beranda</h2><button class="ib tg" id="th" aria-label="Ganti mode malam atau pagi">☀️ Pagi</button><div class="av">RR</div></div>
+<main>
+<section class="pg" id="beranda"><div class="hero2"><div><h1>Pahami Round Robin, langkah demi langkah</h1><p>12 sesi singkat dengan simulasi mini yang bisa kamu mainkan, lalu uji di simulator penuh dan latihan soal.</p><a class="btn pk" href="#materi">Mulai belajar</a></div><div class="orbw" aria-hidden="true"><div class="orb"><div class="cpu">💻</div><div class="rg"><b style="--a:0deg;background:#e11d2e"><span>P1</span></b><b style="--a:90deg;background:#e4e4e7"><span>P2</span></b><b style="--a:180deg;background:#52525b"><span>P3</span></b><b style="--a:270deg;background:#ff6b6b"><span>P4</span></b></div></div><em class="fl" style="left:4%;top:6%;--d:0s">⏱️</em><em class="fl" style="right:2%;top:2%;--d:1s">✨</em><em class="fl" style="left:0;bottom:8%;--d:2s">📊</em><em class="fl" style="right:6%;bottom:4%;--d:.5s">⚡</em></div></div>
+<div class="hm"><div><div class="card"><h3>Lanjutkan belajar</h3><div class="cont" id="cont"></div></div>
+<div class="card"><div class="tri"><div><h3>Materi</h3><p>Penjelasan singkat dan contoh angka di tiap sesi.</p><a class="btn pl" href="#materi">Buka materi</a></div><div><h3>Simulator</h3><p>Isi proses sendiri, lihat Gantt dan perhitungannya.</p><a class="btn pl" href="#simulasi">Coba simulator</a></div><div><h3>Latihan</h3><p>Soal acak dengan jawaban dihitung mesin yang sama.</p><a class="btn pl" href="#latihan">Mulai latihan</a></div></div></div>
+<div class="card"><h3>Bangun pemahamanmu</h3><div class="arts"><a class="art" href="#materi" data-l="0"><i class="g1">🔄</i><b>Konsep dasar</b><small>Sesi 1–3</small></a><a class="art" href="#materi" data-l="3"><i class="g2">⏱️</i><b>Quantum dan antrean</b><small>Sesi 4–5</small></a><a class="art" href="#materi" data-l="6"><i class="g3">🧮</i><b>Rumus waktu</b><small>Sesi 6–10</small></a><a class="art" href="#materi" data-l="10"><i class="g4">📊</i><b>Gantt dan latihan</b><small>Sesi 11–12</small></a></div></div></div>
+<div><div class="card" style="text-align:center"><h3>Sesi dibuka</h3><div class="ring" id="ring"><div id="rt"></div></div><small class="mut">Dihitung dari sesi materi yang sudah kamu buka.</small></div>
+<div class="card"><h3>Skor latihan</h3><p class="big" id="hs">0 / 0</p><p class="mut" style="margin:0 0 12px">Jawaban benar dari soal yang dikerjakan.</p><a class="btn pl" href="#latihan">Ke latihan</a></div>
+<div class="card"><h3>Contoh Gantt Chart</h3><div class="demo"><div class="dr"><b style="flex:2;background:#e11d2e">P1</b><b style="flex:2;background:#e4e4e7">P2</b><b style="flex:2;background:#52525b">P3</b><b style="flex:2;background:#e11d2e">P1</b><b style="flex:1;background:#ff6b6b">P4</b></div></div></div></div></div></section>
+<section class="pg" id="materi"><div class="lm"><div class="ll" id="ll"></div><div id="lc"></div></div></section>
+<section class="pg" id="simulasi"><h2>Simulator Round Robin</h2><p class="mut">Isi data proses, tekan Mulai, lalu jalankan langkah demi langkah.</p>
+<div class="card"><div class="sc"><table><thead><tr><th>Process</th><th>Arrival</th><th>Burst</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
+<p>Time Quantum: <input type="number" id="tq" value="2" min="1"></p><div class="ctl"><button class="btn" id="add">+ Tambah proses</button><button class="btn" id="smp">Data contoh</button><button class="btn p" id="go">Mulai Simulasi</button></div><div class="err" id="err"></div></div>
+<div id="viz" hidden><div class="ctl"><button class="btn" id="prev">⏮ Previous</button><button class="btn p" id="next">Next ⏭</button><button class="btn" id="play">▶ Play</button><button class="btn" id="pause">⏸ Pause</button><button class="btn" id="reset">↺ Reset</button></div>
+<div class="card"><h3>Gantt Chart</h3><div class="gw"><div id="gantt"></div></div></div>
+<div class="grid"><div class="card"><h3>Ready Queue</h3><div class="q" id="rq"></div></div><div class="card"><h3>CPU Status</h3><div id="cpu"></div></div></div>
+<div class="card"><h3>Penjelasan Langkah</h3><div class="exl" id="ex"></div></div><div class="card" id="res" hidden></div></div></section>
+<section class="pg" id="latihan"><h2>Latihan Soal</h2><p>Skor: <span class="sb" id="sc">0 / 0</span></p><div class="card" id="qz"></div></section>
+</main><footer>RR Learning Lab · Pahami Round Robin, Langkah demi Langkah.</footer></div></div>
+<script>
+const $=s=>document.querySelector(s),PAL=['#e11d2e','#e4e4e7','#52525b','#ff6b6b','#8b0f1c','#a1a1aa','#fda4a4','#3f3f46'],col=i=>PAL[i%8];
+function sim(ps,q){
+ const cm={};ps.forEach((p,i)=>cm[p.id]=i);
+ const L=ps.map((p,i)=>({...p,i,rem:p.bt,first:null,ct:null})).sort((a,b)=>a.at-b.at||a.i-b.i);
+ let t=0,k=0,done=0,Q=[],st=[];const n=L.length;
+ const arr=()=>{const a=[];while(k<n&&L[k].at<=t){Q.push(L[k]);a.push(L[k]);k++}return a};
+ const init=L.filter(p=>p.at<=0).map(p=>p.id);arr();
+ while(done<n){
+  if(!Q.length){const t0=t;t=L[k].at;const a=arr();st.push({type:'idle',t0,t1:t,qb:[],qa:Q.map(x=>x.id),arr:a.map(x=>x.id)});continue}
+  const p=Q.shift(),qb=[p.id,...Q.map(x=>x.id)],r0=p.rem,run=Math.min(q,r0),t0=t;
+  if(p.first===null)p.first=t;
+  p.rem-=run;t+=run;const a=arr();let fin=false;
+  if(p.rem>0)Q.push(p);else{p.ct=t;done++;fin=true}
+  st.push({type:'run',p:p.id,at:p.at,bt:p.bt,q,t0,t1:t,run,r0,r1:p.rem,qb,qa:Q.map(x=>x.id),arr:a.map(x=>x.id),fin,first:r0===p.bt});
+ }
+ const res=L.sort((a,b)=>a.i-b.i).map(p=>({id:p.id,at:p.at,bt:p.bt,ct:p.ct,tat:p.ct-p.at,wt:p.ct-p.at-p.bt,rt:p.first-p.at,first:p.first}));
+ const total=st[st.length-1].t1,busy=st.filter(s=>s.type=='run').reduce((a,s)=>a+s.run,0);
+ return{st,res,cm,init,total,busy,q};
+}
+function gantt(st,upto,total,cm,hl){
+ let b='',tk='';
+ st.slice(0,upto).forEach((s,i)=>{const l=s.t0/total*100,w=(s.t1-s.t0)/total*100,dim=hl&&s.p!=hl;
+  b+=`<div class="blk ${s.type=='idle'?'idle':''} ${i==upto-1?'new':''}" style="left:${l}%;width:${w}%;${s.type=='run'?'background:'+col(cm[s.p]):''}${dim?';opacity:.2':''}">${s.type=='run'?s.p:'Idle'}</div>`;tk+=`<span style="left:${l}%">${s.t0}</span>`});
+ if(upto)tk+=`<span style="left:${st[upto-1].t1/total*100}%">${st[upto-1].t1}</span>`;
+ return `<div style="width:max(100%,${total*38+24}px)"><div class="gi">${b}</div><div class="tk">${tk}</div></div>`;
+}
+const chips=(a,cm)=>a.length?a.map(x=>`<span class="chip" style="background:${col(cm[x])}">${x}</span>`).join('<i>→</i>'):'<span class="mut">(kosong)</span>';
+/* MINI SIMULASI */
+const fmt=x=>String(x).replace('.',','),av=(S,k)=>fmt(+(S.res.reduce((a,r)=>a+r[k],0)/S.res.length).toFixed(2));
+const rtab=S=>`<div class="sc"><table><tr><th>Proses</th><th>AT</th><th>BT</th><th>CT</th><th>TAT</th><th>WT</th><th>RT</th></tr>${S.res.map(r=>`<tr><td>${r.id}</td><td>${r.at}</td><td>${r.bt}</td><td>${r.ct}</td><td>${r.tat}</td><td>${r.wt}</td><td>${r.rt}</td></tr>`).join('')}<tr><td><b>Rata-rata</b></td><td></td><td></td><td></td><td><b>${av(S,'tat')}</b></td><td><b>${av(S,'wt')}</b></td><td><b>${av(S,'rt')}</b></td></tr></table></div>`;
+function stepView(S,K,c){
+ const n=S.st.length,cur=K?S.st[K-1]:null,T=cur?cur.t1:0,qq=cur?cur.qa:S.init,rem={};
+ S.res.forEach(r=>rem[r.id]=r.bt);S.st.slice(0,K).forEach(s=>{if(s.type=='run')rem[s.p]=s.r1});
+ const rows=S.res.map(r=>{const d=rem[r.id]==0,me=cur&&cur.p==r.id,s=d?'✔ Selesai':r.at>T?'⏳ Belum tiba':'⌛ Menunggu di antrean';
+  return `<tr${me?' style="background:var(--soft)"':''}><td><span class="dot" style="background:${col(S.cm[r.id])}"></span>${r.id}</td><td>${r.at}</td><td>${r.bt}</td><td><b>${rem[r.id]}</b></td><td style="text-align:left">${me?'▶ giliran tadi · ':''}${s}</td></tr>`}).join('');
+ let nar;
+ if(!K)nar=`<p>Mulai di <b>t = 0</b>. Proses yang sudah tiba berada di antrean. Tekan <b>Next ⏭</b> untuk menjalankan giliran pertama.</p>`;
+ else if(cur.type=='idle')nar=`<p>Antrean kosong, belum ada proses siap. CPU <b>idle</b> dari t=${cur.t0} sampai t=${cur.t1}${cur.arr.length?', lalu '+cur.arr.join(', ')+' tiba.':'.'}</p>`;
+ else nar=`<b>Langkah ${K}</b><ol style="margin:6px 0 0;padding-left:20px"><li>Ambil proses paling depan: <b>${cur.p}</b>.</li><li>Jatah ${cur.q}, sisa burst ${cur.r0}, maka ${cur.p} jalan <b>${cur.run}</b> satuan (t ${cur.t0} → ${cur.t1}).</li><li>${cur.fin?`Sisa 0, jadi <b>${cur.p} selesai</b> (CT = ${cur.t1}).`:`Sisa ${cur.r1}, belum selesai, jadi ${cur.p} pindah ke <b>belakang</b> antrean.`}${cur.arr.length?` <b>${cur.arr.join(', ')}</b> tiba selama giliran ini (sampai t=${cur.t1}), jadi masuk antrean <b>lebih dulu</b>.`:''}</li></ol>`;
+ const end=K==n&&c.tbl?`<h4 style="margin:14px 0 6px">Hasil akhir</h4>${rtab(S)}`:'';
+ return `<div class="clk">⏰ Waktu sekarang: <b>t = ${T}</b></div><div class="sc"><table><tr><th>Proses</th><th>AT</th><th>BT</th><th>Sisa BT</th><th style="text-align:left">Status</th></tr>${rows}</table></div><div class="gw">${gantt(S.st,K,S.total,S.cm,null)}</div><div class="q">Ready Queue (depan → belakang): ${chips(qq,S.cm)}</div><div class="mnote">${nar}</div>${end}`}
+function mini(box,c){
+ let ps=c.ps.map(p=>({...p})),k=0,v=c.v,sel=0;
+ box.innerHTML='<div class="mctl"></div><div class="mv"></div>';
+ const run=()=>{const P=ps.map(p=>({...p}));if(c.m=='bt')P[0].bt=v;return sim(P,c.m=='q'?v:c.q)};
+ const ctl=()=>{const S=run();return c.m=='step'?`<button class="btn" data-a="-">⏮ Kembali</button><button class="btn p" data-a="+">Next ⏭</button><button class="btn" data-a="0">↺ Ulang</button><span class="mut">Langkah ${Math.min(k,S.st.length)} dari ${S.st.length}</span>`:c.m=='proc'?'<span class="mut">Pilih proses:</span>'+S.res.map((x,i)=>`<button class="pill ${i==sel?'on':''}" data-s="${i}" style="--c:${col(i)}">${x.id}</button>`).join(''):`<label>${c.lab}: <b id="vv">${v}</b></label><input type="range" min="${c.min}" max="${c.max}" value="${v}">`};
+ function draw(first){
+  const S=run(),n=S.st.length;k=Math.min(k,n);const r=S.res[sel]||S.res[0];
+  if(first||c.m=='step'||c.m=='proc')box.querySelector('.mctl').innerHTML=ctl();else $('#vv').textContent=v;
+  box.querySelector('.mv').innerHTML=c.m=='step'?stepView(S,k,c):`<div class="gw">${gantt(S.st,n,S.total,S.cm,c.m=='proc'?r.id:null)}</div><div class="mnote">${c.note({S,r,v,q:c.q})}</div>`;
+ }
+ box.onclick=e=>{const d=e.target.dataset;if(d.a)k=d.a=='0'?0:Math.max(0,k+(d.a=='+'?1:-1));else if(d.s!==undefined)sel=+d.s;else return;draw()};
+ box.oninput=e=>{if(e.target.type=='range'){v=+e.target.value;draw()}};
+ draw(true);
+}
+const mkp=a=>a.map(d=>({id:d[0],at:d[1],bt:d[2]})),
+B=mkp([['P1',0,5],['P2',1,4],['P3',2,2],['P4',3,3]]),C0=mkp([['P1',0,5],['P2',0,3],['P3',0,2]]),C1=mkp([['P1',0,10],['P2',0,5],['P3',0,8],['P4',0,6]]),LT=mkp([['P1',0,8],['P2',1,5],['P3',2,3],['P4',3,6]]);
+const GL=[['Process','Program yang sedang dieksekusi oleh CPU.'],['Ready Queue','Daftar proses yang siap memakai CPU.'],['Time Quantum','Batas waktu CPU untuk satu giliran proses.'],['Preemption','Pengambilalihan CPU ketika quantum habis.'],['Context Switch','Perpindahan CPU dari satu proses ke proses lain.'],['Burst Time','Total waktu CPU yang dibutuhkan proses.']];
+const LS=[
+{t:'Apa Itu Round Robin?',b:'<p><b>Round Robin (RR)</b> adalah penjadwalan CPU yang membagi waktu prosesor secara bergiliran. Tiap proses mendapat jatah CPU maksimum yang disebut <b>time quantum</b>. Jika jatah habis dan proses belum selesai, proses dihentikan sementara (<i>preemptive</i>) lalu dipindahkan ke <b>belakang</b> antrean.</p><p><b>Karakteristik:</b> preemptive • berbasis time-sharing • antrean melingkar • setiap proses mendapat giliran.</p><p><b>Tujuan:</b> membagi kesempatan CPU secara adil dan meningkatkan respons sistem interaktif.</p>',ex:'Analogi: tiga orang antre memakai satu colokan charger, masing-masing dapat jatah 2 menit. Kalau belum penuh, orang itu antre lagi dari belakang. Coba lihat versi CPU-nya di bawah.',m:'step',ps:C0,q:2,tbl:0},
+{t:'Istilah Penting',b:'<p>Enam istilah ini dipakai terus di seluruh materi.</p><div class="grid">'+GL.map(g=>`<div class="ex"><b>${g[0]}</b><br>${g[1]}</div>`).join('')+'</div>',ex:'Hafalkan dulu enam istilah ini. Sesi berikutnya langsung memakainya.'},
+{t:'Mekanisme Kerja',b:'<p>Setiap kali CPU kosong, ia mengulang 4 langkah berikut:</p><ol><li>Ambil proses paling depan di antrean.</li><li>Jalankan hingga quantum habis atau proses selesai.</li><li>Jika belum selesai, pindahkan ke belakang antrean.</li><li>Ulangi sampai semua proses selesai.</li></ol><p>Proses yang selesai dikeluarkan, yang belum selesai menunggu giliran berikutnya.</p>',ex:'Di simulasi, tiap langkah ditulis dengan urutan 1-2-3 yang sama dengan daftar di atas. Tekan Next dan ikuti satu per satu.',m:'step',ps:C0,q:2},
+{t:'Memilih Time Quantum',b:'<p><b>Quantum terlalu kecil:</b> context switch lebih sering, overhead naik, tetapi tiap proses cepat dapat giliran.</p><p><b>Quantum terlalu besar:</b> context switch berkurang, tetapi waktu menunggu giliran bisa lama dan perilakunya mendekati FCFS.</p><p>Quantum perlu seimbang: responsif tetapi tidak menimbulkan overhead berlebihan.</p>',ex:'Data: P1=10, P2=5, P3=8, P4=6, semua tiba di 0. Geser quantum, lalu perhatikan jumlah blok dan rata-rata waktu.',m:'q',ps:C1,q:3,v:3,min:1,max:10,lab:'Time Quantum',note:o=>{const n=o.S.st.length;return `q = ${o.v}: ada <b>${n}</b> blok eksekusi, berarti ±${n-1} kali context switch. Rata-rata TAT = <b>${av(o.S,'tat')}</b>, rata-rata WT = <b>${av(o.S,'wt')}</b>. ${o.v==3?'Ini sama dengan Contoh 1 di slide kuliah (TAT 24,25 dan WT 17).':o.v==1?'Sangat sering berganti proses, overhead besar.':o.v>=10?'Quantum ≥ BT terbesar: urutan sama seperti FCFS.':'Bandingkan dengan nilai q lain.'}`}},
+{t:'Ready Queue dan Kedatangan Proses',b:'<p><b>Ready Queue</b> adalah daftar proses yang sudah tiba dan siap memakai CPU, dilayani dari depan. Jika antrean kosong sementara proses belum tiba, CPU <b>idle</b>.</p><div class="fm">Aturan: proses yang tiba di batas quantum masuk antrean SEBELUM proses yang baru dipreempt.</div><p>Aturan ini harus konsisten agar hasil hitungan sama.</p>',ex:'Ini data Contoh 2 di slide (q=2). Di langkah 1, P2 (tiba t=1) dan P3 (tiba t=2) sudah tiba saat P1 selesai giliran, jadi antrean menjadi P2, P3, lalu P1.',m:'step',ps:B,q:2},
+{t:'Arrival Time dan Burst Time',b:'<p><b>Arrival Time (AT)</b> adalah waktu proses tiba. Proses hanya boleh masuk antrean setelah AT-nya tercapai.</p><p><b>Burst Time (BT)</b> adalah total waktu CPU yang dibutuhkan sampai selesai. Makin besar BT dibanding quantum, makin banyak giliran yang diperlukan.</p>',ex:'Geser BT P1 dan lihat berapa kali P1 muncul di Gantt Chart.',m:'bt',ps:C0,q:2,v:5,min:1,max:9,lab:'Burst Time P1',note:o=>`P1 butuh ${o.v} satuan CPU, quantum ${o.q}, maka ${Math.ceil(o.v/o.q)} giliran (⌈${o.v}/${o.q}⌉).`},
+{t:'Completion Time (CT)',b:'<p><b>Completion Time</b> adalah waktu proses selesai dieksekusi, yaitu akhir blok terakhirnya di Gantt Chart.</p><div class="fm">CT = waktu selesai</div>',ex:'Data Contoh 2. Pilih proses, blok miliknya akan disorot.',m:'proc',ps:B,q:2,note:o=>`Blok terakhir ${o.r.id} berakhir di waktu <b>${o.r.ct}</b>, jadi CT ${o.r.id} = <b>${o.r.ct}</b>.`},
+{t:'Turnaround Time (TAT)',b:'<p><b>Turnaround Time</b> adalah total waktu sejak proses datang hingga selesai.</p><div class="fm">TAT = CT − AT</div>',ex:'Pilih proses untuk melihat perhitungannya.',m:'proc',ps:B,q:2,note:o=>`TAT = CT − AT = ${o.r.ct} − ${o.r.at} = <b>${o.r.tat}</b>`},
+{t:'Waiting Time (WT)',b:'<p><b>Waiting Time</b> adalah total waktu proses menunggu di ready queue.</p><div class="fm">WT = TAT − BT</div>',ex:'Blok yang redup adalah giliran proses lain, saat proses yang kamu pilih menunggu.',m:'proc',ps:B,q:2,note:o=>`WT = TAT − BT = ${o.r.tat} − ${o.r.bt} = <b>${o.r.wt}</b>`},
+{t:'Response Time (RT)',b:'<p><b>Response Time</b> adalah waktu dari kedatangan hingga <b>pertama kali</b> mendapat CPU.</p><div class="fm">RT = ST − AT</div><p>ST = waktu pertama kali mulai dieksekusi. <b>RT berbeda dengan WT:</b> RT hanya menghitung sampai giliran pertama, WT menghitung seluruh waktu menunggu.</p>',ex:'Bandingkan RT dan WT tiap proses.',m:'proc',ps:B,q:2,note:o=>`RT = ST − AT = ${o.r.first} − ${o.r.at} = <b>${o.r.rt}</b>, sedangkan WT = <b>${o.r.wt}</b>. ${o.r.rt==o.r.wt?'Sama karena tidak menunggu lagi setelah giliran pertama.':'Berbeda karena menunggu lagi setelah giliran pertama.'}`},
+{t:'Gantt Chart dan Contoh Lengkap',b:'<p><b>Gantt Chart</b> adalah diagram waktu yang menunjukkan proses mana memakai CPU pada rentang waktu berapa. Cara mengerjakan soal:</p><ol><li>Susun Gantt Chart.</li><li>Baca CT dari akhir blok terakhir tiap proses.</li><li>Hitung TAT, WT, dan RT dengan rumus.</li><li>Hitung rata-ratanya.</li></ol>',ex:'Jalankan sampai langkah terakhir, lalu cocokkan dengan Contoh 2 di slide: rata-rata TAT 9,75, WT 6,25, RT 2.',m:'step',ps:B,q:2,tbl:1},
+{t:'Kelebihan, Keterbatasan, dan Latihan',b:'<div class="grid"><div class="ex"><b>Kelebihan</b><br>• Pembagian CPU lebih adil<br>• Respons awal relatif baik<br>• Tidak ada proses yang menguasai CPU terus-menerus<br>• Cocok untuk time-sharing</div><div class="ex"><b>Keterbatasan</b><br>• Hasil dipengaruhi ukuran quantum<br>• Quantum kecil menambah context switch<br>• TAT belum tentu paling rendah<br>• Perlu aturan antrean yang konsisten</div></div><p style="margin-top:14px"><b>Latihan mandiri (quantum = 2):</b> P1 (AT 0, BT 8), P2 (1, 5), P3 (2, 3), P4 (3, 6). Buat Gantt Chart, lalu hitung CT, TAT, WT, RT, dan rata-ratanya.</p>',ex:'Kerjakan dulu di kertas, baru tekan Next sampai akhir untuk mencocokkan jawabanmu.',m:'step',ps:LT,q:2,tbl:1}
+];
+let li=0;const dn=new Set();
+function lesson(i){li=i;dn.add(i);const s=LS[i];
+ $('#ll').innerHTML=LS.map((x,j)=>`<button class="li ${j==i?'on':''} ${dn.has(j)&&j!=i?'ok':''}" data-l="${j}"><b>${dn.has(j)&&j!=i?'✓':j+1}</b><span>${x.t}</span></button>`).join('');
+ $('#lc').innerHTML=`<div class="card"><span class="sb">Sesi ${i+1} dari ${LS.length}</span><h2>${s.t}</h2>${s.b}<div class="ex">💡 ${s.ex}</div>${s.m?'<div class="lab"><h4>🧪 Simulasi mini</h4><div id="mb"></div></div>':''}<div class="nv"><button class="btn" data-l="${i-1}" ${i?'':'disabled'}>← Sebelumnya</button>${i<LS.length-1?`<button class="btn p" data-l="${i+1}">Berikutnya →</button>`:'<a class="btn p" href="#simulasi">Ke Simulator →</a>'}</div></div>`;
+ if(s.m)mini($('#mb'),s);if(window.__nav)window.scrollTo({top:0,behavior:'smooth'});window.__nav=1}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-l]');if(b&&!b.disabled)lesson(+b.dataset.l)});
+/* SIMULATOR */
+let P=B.map(p=>({id:p.id,at:String(p.at),bt:String(p.bt)})),S=null,idx=0,timer=null;
+function rows(){$('#rows').innerHTML=P.map((p,i)=>`<tr><td><span class="dot" style="background:${col(i)}"></span><input class="id" data-i="${i}" data-f="id" value="${p.id}"></td><td><input type="number" min="0" data-i="${i}" data-f="at" value="${p.at}"></td><td><input type="number" min="1" data-i="${i}" data-f="bt" value="${p.bt}"></td><td><button class="btn" data-del="${i}">Hapus</button></td></tr>`).join('')}
+function stop(){clearInterval(timer);timer=null}
+function inval(){stop();S=null;$('#viz').hidden=true}
+$('#rows').oninput=e=>{const d=e.target.dataset;if(d.f){P[d.i][d.f]=e.target.value;inval()}};
+$('#rows').onclick=e=>{const d=e.target.dataset.del;if(d!==undefined){P.splice(d,1);rows();inval()}};
+$('#add').onclick=()=>{let n=P.length+1;while(P.some(p=>p.id=='P'+n))n++;P.push({id:'P'+n,at:'0',bt:'1'});rows();inval()};
+$('#smp').onclick=()=>{P=B.map(p=>({id:p.id,at:String(p.at),bt:String(p.bt)}));$('#tq').value=2;rows();inval();$('#err').textContent=''};
+$('#tq').oninput=inval;
+function validate(){const e=[],ids=new Set(),q=+$('#tq').value;
+ if(!P.length)e.push('Tambahkan minimal satu proses.');
+ P.forEach((p,i)=>{const id=p.id.trim(),n='Baris '+(i+1)+': ';
+  if(!id)e.push(n+'nama proses kosong.');else if(ids.has(id))e.push(n+'nama "'+id+'" dipakai dua kali.');ids.add(id);
+  if(p.at===''||!Number.isInteger(+p.at)||+p.at<0)e.push(n+'Arrival Time harus bilangan bulat ≥ 0.');
+  if(p.bt===''||!Number.isInteger(+p.bt)||+p.bt<=0)e.push(n+'Burst Time harus bilangan bulat > 0.')});
+ if($('#tq').value===''||!Number.isInteger(q)||q<=0)e.push('Time Quantum harus bilangan bulat > 0.');
+ return e}
+$('#go').onclick=()=>{const e=validate();$('#err').innerHTML=e.join('<br>');if(e.length){$('#viz').hidden=true;return}
+ stop();S=sim(P.map(p=>({id:p.id.trim(),at:+p.at,bt:+p.bt})),+$('#tq').value);idx=0;$('#viz').hidden=false;draw();$('#viz').scrollIntoView({behavior:'smooth'})};
+const expl=(s,k)=>{
+ if(s.type=='idle')return `<p><b>Langkah ${k}:</b> Waktu sekarang = ${s.t0}.</p><p>Ready Queue kosong, belum ada proses yang tiba. CPU <b>idle</b> sampai waktu ${s.t1}${s.arr.length?`, ketika ${s.arr.join(', ')} tiba dan masuk Ready Queue`:''}.</p>`;
+ let h=`<p><b>Langkah ${k}:</b> Waktu sekarang = ${s.t0}.</p><p>Ready Queue: [${s.qb.join(', ')}]. CPU mengambil <b>${s.p}</b> dari depan antrean.</p><p>${s.p} memiliki sisa Burst Time ${s.r0} dan Time Quantum ${s.q}.</p>`;
+ if(s.first)h+=`<p>Ini pertama kali ${s.p} mendapat CPU: Response Time = ${s.t0} − ${s.at} = ${s.t0-s.at}.</p>`;
+ h+=s.r0>s.q?`<p>Karena ${s.r0} > ${s.q}, ${s.p} hanya berjalan ${s.run} satuan waktu (${s.t0}–${s.t1}). Sisa Burst Time ${s.p} = ${s.r0} − ${s.run} = ${s.r1}.</p>`:`<p>Karena ${s.r0} ≤ ${s.q}, ${s.p} berjalan ${s.run} satuan waktu (${s.t0}–${s.t1}) sampai selesai.</p>`;
+ if(s.arr.length)h+=`<p>Selama ${s.p} berjalan, ${s.arr.join(', ')} tiba dan masuk Ready Queue lebih dulu.</p>`;
+ h+=s.fin?`<p>${s.p} selesai pada waktu ${s.t1}, dikeluarkan dari antrean (CT = ${s.t1}).</p>`:`<p>${s.p} belum selesai, kembali ke belakang antrean.</p>`;
+ return h+`<p>Ready Queue sekarang: [${s.qa.join(', ')||'kosong'}].</p>`};
+function draw(){
+ if(!S)return;const{st,res,cm,total}=S,cur=idx?st[idx-1]:null;
+ $('#gantt').innerHTML=gantt(st,idx,total,cm);
+ $('#rq').innerHTML=chips(idx?cur.qa:S.init,cm);
+ const t=cur?cur.t1:0,fin=res.filter(r=>r.ct<=t&&idx>0).map(r=>r.id),wait=idx?cur.qa:S.init,notyet=res.filter(r=>r.at>t).map(r=>r.id);
+ $('#cpu').innerHTML=`<p>Waktu sekarang: <b>${t}</b></p><p>CPU: ${!cur?'belum mulai':cur.type=='idle'?'<b>Idle</b>':`baru menjalankan <b>${cur.p}</b> (${cur.t0}–${cur.t1})`}</p>`+(cur&&cur.type=='run'?`<p>Sisa Burst ${cur.p}: <b>${cur.r1}</b></p>`:'')+`<p>Menunggu: ${chips(wait,cm)}</p><p>Selesai: ${fin.length?chips(fin,cm):'<span class="mut">belum ada</span>'}</p>`+(notyet.length?`<p class="mut">Belum tiba: ${notyet.join(', ')}</p>`:'');
+ $('#ex').innerHTML=idx?st.slice(0,idx).map((s,i)=>`<div class="s ${i==idx-1?'cur':''}">${expl(s,i+1)}</div>`).join(''):'<p class="mut">Tekan Next atau Play untuk memulai. Antrean awal berisi proses yang tiba pada waktu 0.</p>';
+ const ex=$('#ex');ex.scrollTop=ex.scrollHeight;
+ $('#prev').disabled=idx==0;$('#next').disabled=idx==st.length;
+ const done=idx==st.length;$('#res').hidden=!done;if(done)result();
+}
+function result(){const{res,total,busy}=S,a=k=>(res.reduce((s,r)=>s+r[k],0)/res.length).toFixed(2),f=x=>Number.isInteger(x)?x:x.toFixed(2);
+ $('#res').innerHTML=`<h3>Tabel Perhitungan</h3><div class="sc"><table><tr><th>Process</th><th>AT</th><th>BT</th><th>CT</th><th>TAT</th><th>WT</th><th>RT</th></tr>${res.map(r=>`<tr><td>${r.id}</td><td>${r.at}</td><td>${r.bt}</td><td>${r.ct}</td><td>${r.tat}</td><td>${r.wt}</td><td>${r.rt}</td></tr>`).join('')}</table></div>
+ <p>Average TAT = <b>${a('tat')}</b> · Average WT = <b>${a('wt')}</b> · Average RT = <b>${a('rt')}</b></p>
+ <p>CPU Utilization = waktu sibuk ÷ total waktu = ${busy} ÷ ${total} × 100% = <b>${f(busy/total*100)}%</b></p><h3>Perhitungan Rinci</h3>`+
+ res.map(r=>`<p><b>${r.id}</b><br>CT = ${r.ct} (waktu ${r.id} selesai)<br>TAT = CT − AT = ${r.ct} − ${r.at} = ${r.tat}<br>WT = TAT − BT = ${r.tat} − ${r.bt} = ${r.wt}<br>RT = waktu pertama CPU − AT = ${r.first} − ${r.at} = ${r.rt}</p>`).join('')}
+const go=d=>{if(!S)return;idx=Math.max(0,Math.min(S.st.length,idx+d));draw();if(idx==S.st.length)stop()};
+$('#next').onclick=()=>{stop();go(1)};$('#prev').onclick=()=>{stop();go(-1)};$('#pause').onclick=stop;
+$('#reset').onclick=()=>{stop();idx=0;draw()};
+$('#play').onclick=()=>{if(!S||timer)return;if(idx==S.st.length)idx=0;timer=setInterval(()=>go(1),1200);go(1)};
+/* LATIHAN */
+const rnd=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),sh=a=>a.map(x=>[Math.random(),x]).sort((x,y)=>x[0]-y[0]).map(x=>x[1]);
+const seq=s=>s.st.map(x=>x.type=='run'?x.p:'Idle').join(' → ');
+const BANK=[
+['Apa yang terjadi pada proses yang jatah quantum-nya habis tetapi belum selesai?',['Dikeluarkan dari sistem','Kembali ke belakang Ready Queue','Kembali ke depan Ready Queue','Menunggu sampai semua proses lain selesai'],1,'Pada RR, proses yang belum selesai dipindah ke belakang Ready Queue agar proses lain mendapat giliran.'],
+['Jika Time Quantum dibuat sangat besar (lebih besar dari semua BT), RR berperilaku seperti...',['FCFS','Shortest Job First','Priority Scheduling','Tidak menjalankan proses'],0,'Setiap proses selesai dalam satu giliran sehingga urutannya sama dengan urutan kedatangan, yaitu FCFS.'],
+['Rumus Waiting Time yang benar adalah...',['CT − AT','TAT − BT','CT − BT − RT','Waktu pertama CPU − AT'],1,'WT = TAT − BT. CT − AT adalah TAT, dan waktu pertama CPU − AT adalah RT.'],
+['Quantum yang terlalu kecil menyebabkan...',['Proses tidak pernah selesai','Terlalu banyak pergantian proses (overhead)','Waktu tunggu selalu nol','CPU selalu idle'],1,'Setiap pergantian proses memerlukan context switch, sehingga quantum kecil menambah overhead.']];
+function mk(){const n=rnd(3,4),ps=[];for(let i=0;i<n;i++)ps.push({id:'P'+(i+1),at:i?rnd(0,5):0,bt:rnd(1,6)});
+ const q=rnd(2,3),s=sim(ps,q),ty=rnd(0,3),o={ps,q,s,ty};
+ if(ty==0){const b=BANK[rnd(0,3)];o.txt=b[0];o.opts=b[1];o.ans=b[2];o.why=b[3];o.ps=null}
+ else if(ty==1){const c=seq(s),d=new Set([c]);[q+1,q+2,Math.max(1,q-1),1,9].forEach(x=>d.add(seq(sim(ps,x))));
+  while(d.size<4)d.add(sh(s.st.filter(x=>x.type=='run').map(x=>x.p)).join(' → '));
+  o.opts=[c,...[...d].filter(x=>x!=c).slice(0,3)];o.opts=sh(o.opts);o.ans=o.opts.indexOf(c);
+  o.txt=`Tentukan urutan eksekusi pada Gantt Chart dengan Time Quantum = ${q}.`;o.why=`Simulasi RR (q=${q}) menghasilkan: ${c}. Tiap blok maksimal ${q} satuan waktu, proses yang belum selesai ke belakang antrean.`}
+ else if(ty==2){const r=s.res[rnd(0,n-1)],m=['ct','tat','wt','rt'][rnd(0,3)],N={ct:'Completion Time',tat:'Turnaround Time',wt:'Waiting Time',rt:'Response Time'}[m];
+  o.num=r[m];o.txt=`Dengan Time Quantum = ${q}, berapa ${N} (${m.toUpperCase()}) untuk ${r.id}?`;
+  o.why=`Gantt: ${seq(s)}. ${r.id}: CT = ${r.ct}, TAT = ${r.ct} − ${r.at} = ${r.tat}, WT = ${r.tat} − ${r.bt} = ${r.wt}, RT = ${r.first} − ${r.at} = ${r.rt}. Jawaban ${m.toUpperCase()} = ${r[m]}.`}
+ else{const q2=q==2?4:1,s2=sim(ps,q2),c=x=>x.st.filter(y=>y.type=='run').length;o.num=c(s2);
+  o.txt=`Dengan q = ${q} terdapat ${c(s)} blok eksekusi pada Gantt Chart. Berapa jumlah blok eksekusi jika Time Quantum diubah menjadi ${q2}?`;
+  o.why=`Dengan q = ${q2} urutannya: ${seq(s2)}, yaitu ${c(s2)} blok. ${q2>q?'Quantum lebih besar → giliran lebih sedikit.':'Quantum lebih kecil → giliran lebih banyak.'}`}
+ return o}
+let Q1,sc=0,tt=0,ans=false;
+function quiz(){Q1=mk();ans=false;const o=Q1;
+ $('#qz').innerHTML=(o.ps?`<div class="sc"><table><tr><th>Process</th><th>AT</th><th>BT</th></tr>${o.ps.map(p=>`<tr><td>${p.id}</td><td>${p.at}</td><td>${p.bt}</td></tr>`).join('')}</table></div>`:'')+`<p><b>${o.txt}</b></p>`+
+ (o.opts?o.opts.map((t,i)=>`<button class="btn opt" data-o="${i}">${t}</button>`).join(''):`<input type="number" id="na"> <button class="btn p" id="chk">Periksa</button>`)+`<div id="fb"></div><p><button class="btn" id="nq">Soal baru →</button></p>`}
+function fb(ok,corr){if(ans)return;ans=true;tt++;if(ok)sc++;$('#sc').textContent=sc+' / '+tt;$('#fb').innerHTML=`<p class="${ok?'ok':'bad'}">${ok?'✔ Benar!':'✘ Salah.'}</p><p>Jawaban benar: <b>${corr}</b></p><p>${Q1.why}</p>`}
+$('#qz').onclick=e=>{const t=e.target;if(t.id=='nq')quiz();
+ else if(t.dataset.o!==undefined){fb(+t.dataset.o==Q1.ans,Q1.opts[Q1.ans]);document.querySelectorAll('.opt').forEach(b=>b.disabled=true)}
+ else if(t.id=='chk'){const v=$('#na').value;if(v==='')return;fb(+v==Q1.num,Q1.num)}};
+/* ROUTER */
+function route(){const h=(location.hash||'#beranda').slice(1),id=['beranda','materi','simulasi','latihan'].includes(h)?h:'beranda';
+ document.querySelectorAll('.pg').forEach(s=>s.classList.toggle('on',s.id==id));document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')=='#'+id));window.scrollTo(0,0);$('#pt').textContent={beranda:'Beranda',materi:'Materi',simulasi:'Simulasi',latihan:'Latihan'}[id];if(id!='simulasi')stop()}
+
+function hm(){const n=dn.size,t=LS.length,nx=[...LS.keys()].find(j=>!dn.has(j)),j=nx===undefined?li:nx;
+ $('#cont').innerHTML=`<i>📘</i><div><b>${nx===undefined?'Ulangi: ':'Sesi '+(j+1)+': '}${LS[j].t}</b><div class="pb"><u style="width:${n/t*100}%"></u></div><small class="mut">${n} dari ${t} sesi dibuka</small></div><a class="btn p" href="#materi" data-l="${j}">${nx===undefined?'Buka lagi':'Lanjutkan'}</a>`;
+ $('#ring').style.setProperty('--p',n/t*100);$('#rt').innerHTML=`${n}/${t}<small>sesi</small>`;$('#hs').textContent=sc+' / '+tt}
+{const L0=lesson,F0=fb;lesson=function(i){L0(i);hm()};fb=function(a,b){F0(a,b);hm()}}
+hm();
+addEventListener('hashchange',route);rows();quiz();lesson(0);window.__nav=0;route();
+{const d=document.documentElement,b=$('#th'),ap=t=>{d.dataset.theme=t;b.textContent=t=='dark'?'☀️ Pagi':'🌙 Malam';try{localStorage.setItem('rr-theme',t)}catch(e){}};let t='dark';try{t=localStorage.getItem('rr-theme')||'dark'}catch(e){}ap(t=='light'?'light':'dark');b.onclick=()=>ap(d.dataset.theme=='dark'?'light':'dark')}
+</script></body></html>
